@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal Analytics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-box">SP</div>
+            <span>Student Performance Analytics</span>
+        </div>
+
+        <nav>
+            <button class="nav-btn active" data-page="dashboard">
+                Dashboard
+            </button>
+            <button class="nav-btn" data-page="monitor">
+                At-Risk Watch
+            </button>
+            <button class="nav-btn" data-page="analytics">
+                Overview
+            </button>
+            <button class="nav-btn" data-page="system">
+                Student Lookup
+            </button>
+            <button class="nav-btn" data-page="team">
+                Team
+            </button>
+            <button class="nav-btn" id="logoutBtn" style="color: #ff6565;">
+                Logout
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <p class="eyebrow">ACADEMIC PERFORMANCE CENTER</p>
+                    <h1>
+                        Student Academic
+                        <span>Analytics</span>
+                    </h1>
+                    <p class="description">
+                        Monitor and analyze student grades, attendance records, class averages, 
+                        and identify students at academic risk through one dashboard.
+                    </p>
+                    <button class="primary-btn" id="startMonitoring">
+                        View At-Risk Students
+                    </button>
+                </div>
+
+                <div class="status-card">
+                    <p>Current Portal Status</p>
+                    <h2 id="systemStatus">Connected</h2>
+                    <div class="status-line"></div>
+                    <small id="statusNote">Live Database Connected</small>
+                </div>
+            </div>
+
+            <!-- PERFORMANCE CARDS -->
+            <div class="cards">
+                <div class="card">
+                    <div class="card-header">
+                        <span>CLASS MARKS</span>
+                        <b>AVG</b>
+                    </div>
+                    <div class="big-number" id="cpuValue">--%</div>
+                    <div class="progress">
+                        <div id="cpuBar" style="width: 0%"></div>
+                    </div>
+                    <p>Class average marks</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span>ATTENDANCE</span>
+                        <b>ATT</b>
+                    </div>
+                    <div class="big-number" id="ramValue">--%</div>
+                    <div class="progress">
+                        <div id="ramBar" style="width: 0%"></div>
+                    </div>
+                    <p>Class average attendance</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span>TOTAL ENROLLED</span>
+                        <b>TOTAL</b>
+                    </div>
+                    <div class="big-number" id="diskValue">0</div>
+                    <div class="progress">
+                        <div id="diskBar" style="width: 100%"></div>
+                    </div>
+                    <p>Registered students</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span>AT-RISK COUNT</span>
+                        <b>ALERT</b>
+                    </div>
+                    <div class="big-number" id="networkValue" style="color: #ff6b6b;">0</div>
+                    <p class="network-text">Students requiring intervention</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= AT-RISK MONITOR ================= -->
+        <section id="monitor" class="page">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">INTERVENTION WATCH</p>
+                    <h2>At-Risk Student Roster</h2>
+                </div>
+                <button class="secondary-btn" id="refreshData">
+                    Refresh Metrics
+                </button>
+            </div>
+
+            <div class="monitor-grid" id="atRiskContainer">
+                <div class="monitor-card">
+                    <span>Status</span>
+                    <strong>Loading...</strong>
+                    <p>Fetching flagged records from database</p>
+                </div>
+            </div>
+
+            <div class="monitor-message">
+                <div class="message-icon">✓</div>
+                <div>
+                    <h3>Rule Engine Active</h3>
+                    <p>Students are flagged if marks are below 40% OR attendance is below 75%.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ANALYTICS ================= -->
+        <section id="analytics" class="page">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ANALYTICS</p>
+                    <h2>Class Benchmark Metrics</h2>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <div class="chart-title">
+                    <div>
+                        <h3>Academic Thresholds</h3>
+                        <p>Class performance against passing benchmarks</p>
+                    </div>
+                    <span>ACTIVE</span>
+                </div>
+
+                <div class="chart">
+                    <div class="y-axis">
+                        <span>100%</span>
+                        <span>80%</span>
+                        <span>60%</span>
+                        <span>40%</span>
+                        <span>20%</span>
+                        <span>0%</span>
+                    </div>
+
+                    <div class="bars">
+                        <div class="bar-container">
+                            <div class="bar" id="chartMarksBar" style="height: 50%"></div>
+                            <small>MARKS</small>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar" id="chartAttBar" style="height: 75%"></div>
+                            <small>ATTEND</small>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar" style="height: 40%; background: #ff6565;"></div>
+                            <small>MIN PASS</small>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar" style="height: 75%; background: #ffaa50;"></div>
+                            <small>MIN ATT</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= STUDENT DETAILS ================= -->
+        <section id="system" class="page">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STUDENT LOOKUP</p>
+                    <h2>Individual Report Card</h2>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="lookupId" placeholder="Enter Student ID (e.g. STU001)" style="padding: 10px 15px; background: #11151d; border: 1px solid #292f3a; color: white; border-radius: 6px;">
+                    <button class="secondary-btn" id="lookupBtn">Search</button>
+                </div>
+            </div>
+
+            <div class="system-details" id="studentDetailBox">
+                <div class="detail-row">
+                    <span>Student Name</span>
+                    <strong id="detName">Select or search a student</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Department & Sem</span>
+                    <strong id="detDept">--</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Marks Average</span>
+                    <strong id="detMarks">--</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Attendance Average</span>
+                    <strong id="detAtt">--</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Risk Status</span>
+                    <strong id="detRisk" class="online">--</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Issues Flagged</span>
+                    <strong id="detReasons">None</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TEAM ================= -->
+        <section id="team" class="page">
+            <div class="team-heading">
+                <p class="eyebrow">PROJECT TEAM</p>
+                <h2>Student Portal Analytics</h2>
+                <p>Group members working on the project.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="member-card">
+                    <div class="member-number">01</div>
+                    <h3>Bhoomika</h3>
+                    <p>Frontend & Interface Design</p>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-number">02</div>
+                    <h3>Rahul</h3>
+                    <p>Backend & Database Engine</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>Student Performance Analytics</span>
+        <span>Bhoomika & Rahul</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
